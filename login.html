@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Onagus - Full Stack Designer & Developer </title>
+        <meta name="description" content=""> 
+        <link rel="shortcut icon" href="/favicon.ico"> 
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=0;"> 
+        <script src="https://kit.fontawesome.com/0367411a81.js"></script>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- endbuild -->
+    </head>
+    <body> 
+        <div id="navMenu">
+            <div id="navMenuHead">
+                <i id="navHeadClose"class="far fa-window-close fa-3x"></i>
+            </div>
+            <div id="navMenuItems">
+                <ul>
+                    <li class="navMenuLink buttonReset">Reset</li>
+                    <li class="navMenuLink buttonDevelop">Develop</li>
+                    <li class="navMenuLink buttonDesign">Design</li>
+                </ul> 
+            </div> 
+        </div>
+        <div class="containerNav"> 
+            <nav class="headerWindow">
+                <img id="tlogo" src="images/t.jpg"/>
+                <h1 id="logo">TOSHI</h1>
+                 <div id="folio_section" class="navWindow">  
+                    <a id="buttonAll" class="tagWhite" href="">Reset</a>
+                    <a id="buttonJS" class="tagWhite" href="">Development</a>
+                    <a id="buttonVisual" class="tagWhite" href="">Design</a>
+                    <a id="buttonLogin" class="tagWhite" href="">Login</a>
+                </div>
+            </nav>  
+        </div>  
+        <!--MAIN-->
+        <div class="containerMain">  
+            <div id="loginContainer" class="bandOrange">
+                    <h1>USER SIGN IN</h1>
+                    <form class="form">
+                        <p>Email : </p><br>
+                        <input type="text" name="email"><br>
+                        <p>Password : </p><br>
+                        <input type="password" name="password"><br>
+                        <input class="submitButton" type="submit" value="Submit">
+                    </form> 
+                    <div class="googleSignIn">
+                        <p>OR Sign in with </p> 
+                        <a href="/auth/google" class="googleLogin"><i class="fab fa-2x fa-google-plus-g"></i></a>
+                    </div>
+            </div>  
+        </div>  
+        <footer class="footerBase">
+            <p class="copyRight">Copyright 2019 Toshi Sugano</p>
+        </footer>
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+ 
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+        
+</body>
+</html>

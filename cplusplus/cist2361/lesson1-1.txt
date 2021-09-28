@@ -1,0 +1,71 @@
+<p class="folioText"> 
+//  main.cpp<br>
+//  Lesson2-Program1<br>
+//<br>
+//  Created by Gregory Sugano on 8/19/21.<br>
+//<br><br>
+
+#include <iostream><br>
+#include <string><br><br>
+
+using namespace std;<br><br>
+
+int main() {<br><br>
+    
+    //float identifiers for item prices<br>
+    float item1, item2, item3, item4, item5;<br><br>
+    
+    //string identifiers for shipping information<br>
+    string fullName, streetAddress, cityName, stateName, zipCode, telNumber;<br><br>
+    
+    //set floats to variables<br>
+    item1 = 15.95;<br>
+    item2 = 24.95; <br>
+    item3 = 6.95;<br>
+    item4 = 12.95;<br>
+    item5 = 3.95;<br><br>
+    
+    //User input for full name<br>
+    cout << "Enter your full name :";<br>
+    getline(cin, fullName);<br>
+    cout << endl;<br><br>
+    
+    //User input for street address<br>
+    cout << "Enter your street address :";<br>
+    getline(cin, streetAddress);<br>
+    cout << endl;<br><br>
+    
+    //User input for city name<br>
+    cout << "Enter your city :";<br>
+    getline(cin, cityName);<br>
+    cout << endl;<br><br>
+    
+    //User input for state name<br>
+    cout << "Enter your state :";<br>
+    getline(cin, stateName);<br>
+    cout << endl;<br><br>
+    
+    //User input for zip code<br>
+    cout << "Enter your zip code :";<br>
+    getline(cin, zipCode);<br>
+    cout << endl;<br><br>
+    
+    //User input for telephone number<br>
+    cout << "Enter your telephone number :";<br>
+    getline(cin, telNumber);<br>
+    cout << endl;<br><br>
+    
+    //Output statements for items<br>
+    cout << "Price of item 1 = $" << item1 << endl;<br>
+    cout << "Price of item 2 = $" << item2 << endl;<br>
+    cout << "Price of item 3 = $" << item3 << endl;<br>
+    cout << "Price of item 4 = $" << item4 << endl;<br>
+    cout << "Price of item 5 = $" << item5 << endl;<br>
+    cout << endl;<br><br>
+    //Output statement for shipping information<br>
+    cout << "Shipping information :\n" << fullName << endl << streetAddress << endl << cityName << ", " << stateName << zipCode << endl << telNumber << endl;<br><br>
+    
+    return 0;<br>
+    //End<br>
+}<br>
+</p>

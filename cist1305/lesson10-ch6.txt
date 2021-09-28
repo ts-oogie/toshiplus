@@ -1,0 +1,77 @@
+<p class="folioText">    
+CIST1305 - Lesson 7 - Chapter 5 - Algorithms
+1. Design a While loop that lets the user enter a number. The number
+should be mul tiplied by 10, and the result stored in a variable named
+product. The loop should iterate as long as product contains a value less
+than 100.<br>
+Declare Integer num, prod<br>
+While prod < 100<br>
+Display “Enter a number”<br>
+Input num<br>
+Set prod = num*10<br>
+End While<br><br>
+2. Design a Do-While loop that asks the user to enter two numbers. The
+numbers should be added and the sum displayed. The loop should ask the
+user whether he or she wishes to perform the operation again. If so, the
+loop should repeat; other wise it should terminate.<br><br>
+Declare Integer num1, num2,<br>
+Declare String startLoop<br>
+Do<br>
+Display “Please enter two numbers<br>”<br>
+Input num1, num2<br>
+Display “The sum of these numbers is : “ + (num1+num2)<br>
+Display “Try again?”<br>
+Input startLoop<br>
+While<br>
+startLoop == “yes” OR “y”<br>
+3. Design a For loop that displays the the following set of numbers: 0, 10,<br>
+20, 30, 40, 50 . . . 1000<br>
+Declare Integer MAX_NUM = 1000<br>
+Declare Integer num<br>
+For num = 0 To MAX_NUM<br>
+Display num<br>
+End For<br><br>
+4. Design a loop that asks the user to enter a number. The loop should
+iterate 10 times and keep a running total of the numbers entered.<br>
+Declare Integer num, userNum, totalNum = 0<br>
+For num = 0 to 10<br>
+Display “Enter a number”<br>
+Set totalNum = Input userNum + totalNum<br>
+num = num + 1<br>
+End For<br><br>
+5. Design a For loop that calculates the total of the following series of
+numbers:<br>
+1/30 + 2/29 + 3/28…. 30/1<br>
+Declare Integer counter=0, num1 = 1, num2 = 30, numTotal = 0<br>
+For counter = 0 to 30<br>
+Set numTotal = numTotal + (num1 + counter)/(num2 - counter)<br>
+Set counter = counter+1<br>
+Display “Number is :” + numTotal<br>
+End For<br><br>
+6. Design a nested loop that displays 10 rows of # characters. There
+should be 15 # characters in each row.<br><br>
+Declare Integer num<br>
+Declare String hashRow = “###############”<br>
+For num = 1 to 10<br>
+Display hashRow<br>
+num = num + 1<br><br>
+10.<br>
+End For<br>
+7. Convert the While loop in the following code to a Do-While loop:<br>
+Declare Integer x = 1<br>
+Do<br>
+Display “Enter a number”<br>
+Input x<br>
+While x > 0<br>
+8. Convert the Do-While loop in the following code to a While loop:<br>
+Declare String sure<br>
+While sure !=“Y” AND sure !=“y”<br>
+Input sure<br>
+Do<br>
+Display “Are you sure you want to quit?”<br>
+9. Convert the following While loop to a For loop:<br>
+Declare Integer count = 0<br>
+For count = 0 TO 50<br><br>
+ 
+	</p>
+

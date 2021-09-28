@@ -1,0 +1,45 @@
+<p class="folioText"> 
+//  main.cpp<br>
+//  Lesson 2 - Project 2<br>
+//<br>
+//  Created by Gregory Sugano on 8/20/21.<br>
+//<br><br>
+
+#include <iostream><br>
+#include <string><br>
+using namespace std;<br><br>
+
+int main() {<br><br>
+    
+    //Initialize identifiers<br>
+    int priceTesla, priceNike, totalTesla, totalNike, totalStocks, totalCommission, grandTotal;<br><br>
+    
+    //Set prices for stocks<br>
+    priceTesla = 150;<br>
+    priceNike =  150;<br><br>
+    
+    //Calculate totals<br>
+    totalTesla = priceTesla * 35;<br>
+    totalNike = priceNike * 65;<br>
+    totalStocks = totalTesla + totalNike;<br>
+    totalCommission = (totalTesla * .02) + (totalNike * .02);<br>
+    grandTotal = totalStocks + totalCommission;<br><br>
+    
+    //Print statements<br>
+    cout << "Amount paid for Tesla stock : $" << totalTesla << endl;<br>
+    cout << "Amount paid for Nike stock : $" << totalNike << endl;<br>
+    cout << endl;<br><br>
+    
+    cout << "Total amount paid for all stocks without commission : $" << totalStocks << endl;<br>
+    cout << endl;<br><br>
+    
+    cout << "Total amount of the commission for the transaction : $" << totalCommission << endl;<br>
+    cout << endl;<br><br>
+    
+    cout << "Total amount paid for the stock plus the commission : $" << grandTotal << endl;<br>
+    cout << endl;<br><br>
+    
+    return 0;<br><br>
+   
+}<br>
+</p>

@@ -1,0 +1,54 @@
+<p class="folioText">  
+//  main.cpp<br>
+//  Lesson 3 - Program 1<br>
+//<br>
+//  Created by Gregory Sugano on 8/25/21.<br>
+//<br><br>
+
+#include <iostream><br>
+#include <cmath><br>
+#include <iomanip><br><br>
+ 
+using namespace std;<br><br>
+
+int main() {<br>
+    //Set variables<br>
+    double principalAmt, interestRate, totalInterest, totalAmt, interestAmt;<br>
+    int compoundAmt;<br><br>
+    
+    //User inputs for variables<br>
+    cout << "Enter the principal amount : ";<br>
+    cin >> principalAmt;<br><br>
+    
+    cout << "Enter the interest rate : ";<br>
+    cin >> interestRate;<br><br>
+    
+    cout << "Enter the number of times interest is compounded : ";<br>
+    cin >> compoundAmt;<br><br>
+    
+    //Calculate the interest amount<br>
+    interestAmt = 1 + (interestRate/compoundAmt);<br><br>
+    
+    //Calculate the total interest compounded<br>
+    totalInterest = pow(interestAmt, compoundAmt);<br><br>
+    
+    //Calculate the total principal and compounded interest<br>
+    totalAmt = principalAmt + totalInterest;<br><br>
+    
+    //Print calculations <br><br>
+    cout << setw(22) << left << "Interest rate :" << setw(12) << right << interestRate << "%" <<endl;<br><br>
+    
+    cout << setw(22) << left << "Times compounded:" << setw(12) << right << setprecision(2) << fixed << compoundAmt << endl;<br><br>
+    
+    cout << setw(22) << left  << "Principal amount :" << setw(12) << right << principalAmt << endl;<br><br>
+    
+    cout << setw(22) << left << "Total Interest :" << setw(12) << right << totalInterest << endl;<br><br>
+    
+    cout << setw(22) << left << "Total savings :" << setw(12) << right << totalAmt << endl;<br><br>
+    
+    return 0;<br><br>
+    
+}<br>
+</p>
+
+ 

@@ -1,0 +1,105 @@
+<p class="folioText">    
+ 
+ CIST 1305 – Lesson 11 – Chapter 8  - Tic Tac Toe -  Exercise  10 – Gregory Sugano <br><br>
+	
+	Module main() :<br>
+	Constant Integer ROWS =  3<br>
+	Constant Integer COLS = 3<br>
+	Declare String board[ROWS][COLS] = ‘*’, ‘*’, ‘*’,<br>
+						‘*’, ‘*’, ‘*’,<br>
+						‘*’, ‘*’, ‘*’ <br>
+	Declare Boolean match = false<br>
+	Declare Integer strokes<br>
+	Declare String currPlayer <br>
+	Set currPlayer = ‘X’<br>
+	Set strokes = 0<br><br>
+ 
+	displayBoard(board[][],ROWS, COLS)<br><br>
+	
+	Display “Current player is : “ + currPlayer<br><br>
+
+	While match == false OR strokes <= 9 <br><br>
+	
+		If strokes == 9<br>
+			Display “Tie! Game over!”    	<br> <br>
+			
+		Else<br>
+			setBoard(board[][], ROWS, COLS, currPlayer)<br>
+			Set match = checkBoard(board[][], ROWS, COLS, currPlayer)  <br>
+			If match == True<br>
+				Display “Player “ + currPLayer + “ is the winner!”<br>
+			Else<br>
+				switchPlayer(currPlayer)<br>
+				strokes++<br>
+		End If<br><br>
+
+	End While <br>
+	End Module<br><br>
+
+	//Gets input from user and resets boards<br>
+	Function String setBoard(Ref String board[][], Integer Rows, Integer Cols,  String user)  <br><br>
+
+		Declare currRow, currColumn<br><br>
+
+		Display “Player ” + user +  “ : Enter a row number”  <br>
+		Set currRow = Input<br><br>
+
+		Display “Player “ + user + “: Enter a col number” <br>
+		Set currColumn = Input  <br><br>
+
+		Set board[currRow][currColumn] = user<br><br>
+
+  		displayBoard(board[][],ROWS, COLS)<br><br>
+
+	End Function <br><br>
+
+	//Checks for matches<br>
+ 	Function Boolean checkBoard(String board[][], Integer Rows, Integer Cols, String user)<br>
+		 //If horizontal, vertical, or diagonal matches found, return true<br>
+		If (Board[0][0] == user && Board[0][1] == user && Board[0][2] == user <br>
+							OR <br>
+		   Board[1][0] == user && Board[1][1] == user  && Board[1][2] == user <br>
+							OR<br>
+		   Board[2][0] == user && Board[2][1] == user && Board[2][2] == user <br>
+							OR <br>
+		   Board[0][0] == user && Board[1][0] == user && Board[2][0] == user <br>
+							OR <br>
+		   Board[0][1] == user && Board[1][1]== user && Board[2][1] == user <br>
+							OR<br>
+		  Board[0][2] == user && Board[1][2] == user && Board[2][2] == user<br>
+							OR<br>
+	               Board[0][0] == user && Board[1][1]== user && Board[2][2] == user<br>
+							OR<br>
+		  Board[0][2] == user && Board[1][1] == user && Board[2][0] == user)<br>
+			Return True<br>
+		//If no matches found, return false<br>
+		Else<br>
+			Return False<br>
+		End If   <br>
+	End Function<br><br>
+
+	//Toggles players<br>
+	Function switchPlayer(Ref String user)<br>
+		If user == ‘X’ :<br>
+			Set user == ‘O’ <br>
+			Display “Current player is now : “ + user<br>
+		Else<br>
+			Set user == ‘X’<br>
+			Display “Current player is now : “ + user <br>
+		End If<br>
+	End Function<br><br>
+
+  	//Outputs board to screen<br>
+	Function displayBoard(String board[][], Integer Rows, Integer Cols)<br>
+		Declare rowIndex, colIndex<br><br>
+
+		For rowIndex = 0 to Rows-1 :<br>
+			For colIndex = 0 to Cols-1 :<br>
+				Display boards[rowIndex][colIndex]<br>
+				*linebreak<br>
+				colIndex++<br>
+			End For<br>
+			rowIndex++<br>
+		End For<br>
+	End Function<br>
+	</p>

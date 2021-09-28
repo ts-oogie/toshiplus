@@ -1,0 +1,157 @@
+<p class="folioText"> 
+Module Main() <br><br>
+
+	//Comments provided for areas that may be confusing<br><br>
+
+	Display “GTC 1305 : Employee Management 1.0”<br><br>
+
+	Declare inputFile employeeData  <br>
+	Read employeeData “employees.dat”<br>
+<br>
+	If employeeData exists : <br>
+		appendEmployees(employeeData)<br><br>
+
+	Else If employeeData doesn’t exist :<br>
+		//Create employeeData internal file and  external employees.dat<br>
+		Declare outputFile employeeData<br>
+		Open employeeData “employees.dat”<br>
+	  	appendEmployees(employeeData) 	<br>
+	End If<br><br>
+
+	Display “Print employee files? “<br><br>
+	
+	If user input == ‘yes’ :<br>
+		PrintRecords()<br>
+	End If<br><br>
+	
+End Module <br><br>
+
+Module PrintRecords()<br><br>
+
+	Declare inputFile EmployeeData<br><br>
+		
+	Read employeeData “employees.dat”<br><br>
+
+	Print “ GTC1305 Employee Company:”<br>
+	Print “Employee Report” <br><br>
+
+	While eof(employeeData) == false :<br><br>
+
+		Print “Employee Name : “ +  employeeData lName + ‘,’ + employeeData fName<br>
+		Print “Employee ID : “ + employeeData inputId<br>
+		Print “Hourly Wage : “ + employeeData wage<br>
+		Print line break <br><br>
+
+	End While<br>
+End Module <br><br>
+
+
+Module appendEmployees(outputFile employeeData)<br><br>
+	
+	Declare Boolean runComplete = false  <br>
+	Declare String inputId, fname, lname<br>
+	Declare Real wage     <br>
+	Declare String sessionInput<br>
+	Declare Integer index<br><br>
+	  
+	Declare Boolean idMatch = false<br>
+	Declare String idArr[5] = “RE49762358”, “PR156125”, “OF45461”, “RE68566547”, “PR156984”;<br><br> 
+
+	While runComplete == false :  <br><br>
+
+		Display “Enter Employee ID # : “ <br>
+		Set inputId = user input   <br><br>
+  
+		//Check id to see if its legitimate<br>
+		While idMatch == false :<br>
+			For index = 0 to idArr.length-1 :<br>
+				If inputId == idArr[index] :<br>
+					idMatch == true<br>
+					Stop For loop<br>
+				else<br>
+					Display “Please try another ID :”<br>
+					Set inputId = user input<br>
+				End if<br>
+			End For <br>
+		End While <br><br>
+ 	
+		//Else ask for employee name, Real (2 decimal places)wage, fname, lname <br><br>
+		
+		Display “Enter First Name : ”<br>
+		Set fName = user input<br><br>
+		
+		Display “Enter Last Name : “<br>
+		SetlName = user input<br><br>
+
+		Display “Enter Employee wage : “<br>
+		Set wage = user input<br><br>
+
+		If wage > 45.50 :<br>
+			Display “Please enter a number less than $45.50 : “<br>
+			Set wage = user Input<br>
+		End If <br><br>
+		 
+		If wage toString() split(“,”) reverse() indexOf(‘.’) != 1 :<br>
+			Display “Please enter a real number with two floating points “<br>
+			Set wage = user Input<br>
+		End If<br><br>
+
+		Display “Enter Another employee?”<br>
+		Set sessionInput = user input<br><br>
+
+		If sessionInput == ‘yes’ :  <br>
+			//Create read file called tempFile<br>
+			//If tempFile doesn’t exist, create one <br>
+			Declare inputFile tempFile<br>
+			Read tempFile “temp.dat”  <br>
+			If tempFile is not defined : <br>
+				Declare outputFile tempFile<br>
+				Open tempFile “temp.dat”<br<br>
+
+			//Create new temp file  in append mode to replace existing<br>
+			Declare OutputFile AppendMode newTempFile<br>
+			Open newTempFile “newTemp.dat” <br><br>
+
+			//Append blank new temp file with exisiting, and new inputs<br>
+			Write newTempFile + tempFile + inputId, fName, lName, wage<br><br>
+
+			//Close unused instances<br>
+			Close newTempFile, tempFile<br><br>
+
+			 
+			Delete temp.dat<br>
+			Rename   newTemp.dat   temp.dat <br><br>
+		   
+		Else If sessionInput == ‘no’<br>
+			//set runComplete to true to break while loop <br>
+			runComplete == true<br>
+			//Open read onlt temp.dat<br>
+			Declare inputFile tempFile<br>
+			Read tempFile “temp.dat”  <br><br> 
+			
+			//If temp.dat doesn’t exist, create one<br>
+			If tempFile is not defined : <br>
+				Declare outputFile tempFile<br>
+				Open tempFile “temp.dat”<br>
+			End If <br><br>
+			
+			//Create a newemployeeData appendmode file to replace old<br>
+			Declare outputFile AppendMode newEmployeeData<br>
+			Open newEmployeeData “newEmployeeData.dat”<br><br>
+			
+			//Append employeeData with temp.dat, employee inputs, and <br>			  
+			newEmployeeData<br><br>
+			Write newEmployeeData + employeeData + tempFile + inputId, fName, lName, wage <br><br>
+
+			Close employeeData, newEmployeeData, tempFile<br>
+			Delete employees.dat, temp.dat<br><br>
+
+			Rename newEmployeeData.dat employees.dat <br><br>
+
+		End If<br><br>
+
+	End While<br><br>
+			
+End Module  <br><br>
+</p>
+ 

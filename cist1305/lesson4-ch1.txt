@@ -1,0 +1,25 @@
+<p class="folioText">    
+CIST 1305 - Lesson 4 - Stadium Seating -<br>
+PseudoCode<br>
+Module main :<br>
+1. Declare Integer classA<br>
+2. Declare Integer classB<br>
+3. Declare Integer classC<br>
+4. Call seatingA and pass classA as reference argument<br>
+5. Call seatingB and pass classB as reference argument<br>
+6. Call seatingC and pass classC as reference argument<br>
+7. Call grandTotal and pass classA, classB, classC as arguments<br>
+Module seatingA(Integer Ref classA) :<br>
+1. Display “Please enter number of tickets sold for seating type A : ”<br>
+2. Set classA = input * 15<br>
+Module seatingB(Integer Ref classB) :<br>
+Display “Please enter number of tickets sold for seating type B : <br>
+Set classB = input * 12<br>
+Module seatingC(Integer Ref classC) :<br>
+Display “Please enter number of tickets sold for seating type C : “<br>
+Set classC = input * 9<br>
+Module grandTotal(Integer a, Integer b, Integer c)<br>
+Declare Integer grandTotal = a+b+c<br>
+Output grandTotal<br>
+	</p>
+

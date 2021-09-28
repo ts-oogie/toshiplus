@@ -1,0 +1,72 @@
+<p class="folioText">
+import { combineReducers } from 'redux';<br><br>
+
+const state = {<br>
+		 	loginTruckingPage_1 : { <br>
+					loginEmail : '',<br>
+					loginPassword : '',<br>
+					referralCode : '',<br>
+					companyName : '',<br>
+					companyTrade: '',<br>
+					stateIncorp: '',<br>
+					countryOrigin: ''  <br>
+					},<br>
+			loginTruckingPage_2 : { <br>
+					queryBroker : '',<br>
+					queryCompany : '',  <br>
+					contractAuth : '',<br>
+					commonAuth : '',  <br>
+					queryLoads : '', <br>
+					insuranceDamage : '',<br>
+					cargoInsurance : '',<br>
+					brokerBond: '' <br>
+					}  <br>
+ };<br><br>
+ 
+ const loginTruckingReducer = (prevState = {}) => {<br>
+ 	return prevState;<br>
+  };<br>
+ //Reducers<br>
+ //pass existing loginTruckingpage_1 state from appas prevState param<br>
+ const loginTruckingPage_1Reducer = (prevState = {}, action) => {<br>
+ 	//if the type is updateTruckingPage_1<br>
+ 	if (action.type === 'UPDATE_LOGIN_TRUCKING_PAGE_1') {<br>
+ 		return action.payload;<br>
+ 	}<br><br>
+
+ 	return prevState; <br>
+ };<br><br>
+
+  const loginTruckingPage_2Reducer = (prevState = {}, action) => {<br>
+ 	//if the type is updateTruckingPage_1<br>
+ 	if (action.type === 'UPDATE_LOGIN_TRUCKING_PAGE_2') {<br>
+ 		return action.payload;<br>
+ 	}<br><br>
+
+ 	return prevState; <br>
+ };<br><br>
+<br>
+  export default combineReducers({<br>
+ 	all: loginTruckingReducer,<br>
+ 	page_1: loginTruckingPage_1Reducer,<br>
+ 	page_2: loginTruckingPage_2Reducer<br>
+ });<br><br>
+
+
+function inputFieldS6({ input, label, name  }) {<br>
+	//we are specifying the input module of the props being passed via reduxform<br>
+	//...input means we are specifying all the methods like onBlur, onChange that are nested inside the input module<br>
+	console.log("labels ", label);<br>
+	return(<br> 	
+	); <br>
+<br>
+}<br><br>
+
+export default inputFieldS6;<br>
+ 
+
+
+
+
+
+ </p>

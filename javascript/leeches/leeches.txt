@@ -1,0 +1,100 @@
+<p class="folioText">
+var Router = Backbone.Router.extend({<br>
+    routes: {<br>
+        "": 'Home',<br>
+        "team": 'Team',<br>
+        "festivals": 'Festivals',<br>
+        "updates": 'Updates',<br>
+        "about": 'About',<br>
+        "watch" : 'Watch',<br>
+        "contact": 'Contact',<br>
+        "login": 'Admin-Login',<br>
+        "admin/diary": 'Admin-Diary',<br>
+        "admin/news": 'Admin-News'<br> 
+    }<br>
+});<br><br>
+
+var router = new Router();<br><br>
+
+router.on('route:Home', function() {<br>
+    navReset(); <br>
+    $('.index-container').css({"margin-top": "50px"});<br>
+    var indexView = new IndexView({model: indexModel});<br>
+    var iv = indexView.render().el;<br>
+    $('#app').html(iv);<br>
+});<br><br>
+
+router.on('route:Festivals', function() {<br>
+    navReset();<br>
+    $('.news-model-container').css({"margin-top": "20px"});<br>
+    var newsView = new NewsView(); <br>
+    var nv = newsView.render().el;<br>
+    $('#app').html(nv); <br>
+});<br><br>
+
+router.on('route:Updates', function() {<br>
+    navReset(); <br>
+    //make ajax call to access diary.json<br>
+    var getJSON = $.getJSON("news.json");<br>
+    getJSON.then(function(data) {<br>
+        $.each(data, function(index, obj) {<br>
+            diaryJSON.push(obj);<br>
+        });<br>
+    }).then(function(){<br>
+        var reverseArray = diaryJSON.reverse();<br>
+        diaryCollectionList.reset(reverseArray);<br>
+        $('.diary-collection-container').css({"margin-top": "20px"});<br>
+        var diaryCollectionView = new DiaryCollectionView({collection: diaryCollectionList}); <br>
+        var dcv = diaryCollectionView.render().el;<br>
+        $('#app').html(dcv);<br>
+    });<br><br>
+    
+});<br><br>
+
+router.on('route:Team', function() {<br>
+    navReset();<br>
+    var teamView = new TeamView();<br>
+    var tv = teamView.render().el;<br>
+    $('#app').html(tv);<br>
+
+});<br><br>
+
+router.on('route:About', function() {<br>
+    navReset();<br>
+    var synopsisView = new SynopsisView({model: synopsisModel});<br>
+    var sv = synopsisView.render().el;<br>
+    $('#app').html(sv);<br>
+});<br><br>
+
+router.on('route:Watch', function() {<br>
+    navReset();<br>
+    var watchView = new WatchView();<br>
+    var wv = watchView.render().el;<br>
+    $('#app').html(wv);<br>
+});<br>
+
+router.on('route:Contact', function() {<br>
+    console.log("am I working?");<br>
+    navReset();<br>
+    var contactView = new ContactView();<br>
+    var cv = contactView.render().el;<br>
+    $('#app').html(cv);<br><br>
+
+});<br><br>
+
+router.on('route:Admin-Login', function() {<br>
+    $('#overlaycontainer').css({"z-index":"500", "display": "block"});<br>
+    $('#main-container').css({"display": "none"});<br>
+    $('#side-nav-container').css({"display": "none"});<br>
+    var loginModelView = new LoginModelView();<br>
+    var lv = loginModelView.render().el;<br>
+    var loginNavView = new LoginNavView();<br>
+    var lnv = loginNavView.render().el;<br>
+    $('#overlay-nav').html(lnv);<br>
+    $('#overlay-app').html(lv); <br>
+});<br><br>
+ 
+Backbone.history.start();<br>
+urlReload();<br><br>
+</p>
+

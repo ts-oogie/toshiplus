@@ -1,0 +1,153 @@
+<p class="folioText"> 
+<?php<br>
+	$username = $_POST['username'];<br>
+	$password = $_POST['password']; <br><br>
+
+	$names = array(<br>
+		'toshi' => 'toshi',<br>
+		'admin' => 'admin' <br>
+        );<br><br>
+
+	$pw = array(<br>
+		'toshi' => 'password',<br>
+		'admin' => 'admin'<br>
+		);<br><br>
+
+	if ($_POST['password'] === $pw[$username] and $username === $names[$username]) {<br>
+		echo true;<br>
+	} <br><br>
+	
+	else {<br>
+		echo false;<br>
+	}<br><br>
+?><br><br>
+
+//**---- Global Variables ----**<br>
+var tsGlobal = {<br>
+    clientID : '205386660424-hpvu0tsskcfe0f4i3eu9okhvc8fq90ic.apps.googleusercontent.com',<br>
+    clientSecret : 'OQKuKK900cn7d4BqRKZHz9dV',<br>
+    loginData : {},<br>
+    loginSecret : {<br>
+        toshi : 'password',<br>
+        admin : 'admin'<br>
+    },<br>
+    date : "",<br>
+    postArticle : {},<br>
+    readArticle : []<br>
+};  <br><br>
+ 
+ <br> <br>
+   
+//**---- Global Functions ----** <br>
+var tsFunction = {<br>
+  init : function(){ <br>
+    //Init article container to empty<br>
+    $('#mainContainer').empty();<br>
+    //Resets readArticle <br>
+    tsGlobal.readArticle = [];<br>
+    //Init Firebase<br>
+    fireBase.read();   <br>
+    //Init submit button<br>
+    /* DElegate to parent object as an alternative */<br>
+    $('#submit-button').on('click', function(){<br>
+        //Init login Data to empty<br>
+        tsGlobal.loginData = {};<br>
+        //Go thru each input field and extract prop, value<br>
+        //Run login confirmation function<br>
+        $(':input').each(function(i, data){<br>
+            var thisObj = $(this);<br>
+            var key = thisObj.attr('name');<br>
+            var value = thisObj.val();   <br>
+            tsGlobal.loginData[key] = value;   <br>
+            tsFunction.loginData();<br>
+        }); <br>
+        $('#login-info').empty();<br>
+        //Render the article edit tables onto the edit window<br>
+        tsFunction.renderEdit();<br>
+    });  <br><br>
+
+    //Init submit article button<br>
+    $('#submit-article').on('click', function(e){<br>
+          /*THIS WAS RUNNING TWICE*/<br>
+          e.stopImmediatePropagation();   <br>
+          tsGlobal.postArticle = {};<br>
+          $('.login-inputs').each(function(i, data){<br>
+            var thisObj = $(this);<br>
+            var key = thisObj.attr('name');<br>
+            var value = thisObj.val();    <br>
+            tsGlobal.postArticle[key] = value;   <br>
+            tsGlobal.postArticle['date'] = moment().format("MMM Do YYYY");<br>
+            tsGlobal.postArticle['author'] = tsGlobal.loginData.username; <br>
+          });<br>
+          fireBase.push(tsGlobal.postArticle);<br>
+    });<br><br>
+
+    //Init login button<br>
+    $('#login').on('click', function(){ <br>
+        $('#popUp').css({<br>
+          "display" : "block",<br>
+          "z-index" : 100<br>
+        });<br>
+    });  <br><br>
+ 
+
+  //Renders readArticle contents onto main page<br>
+  renderMain : function(){<br>
+     for (i=0; i<tsGlobal.readArticle.length; i++){<br>
+          var divArticle = new tsHtml.divArticle();<br>
+          var thisModel = tsGlobal.readArticle[i];  <br>
+          var template =  _.template(divArticle.rtn()); <br>
+          var thisDiv = $(this).html(template(thisModel));<br>
+          $('#mainContainer').append(thisDiv); <br>
+      }  <br>
+  },<br> <br>
+//**---- Firebase connection ----**<br>
+var myBlog = new Firebase("https://toshiapp.firebaseio.com/");<br>
+var articleCollection = myBlog.child('articles');<br>
+//Firebase CRUD methods <br>
+var fireBase = {<br>
+  //Push new article entry onto firebase<br>
+  push : function(obj){<br>
+      articleCollection.push(obj);<br>
+  },<br>
+  //Read from Firebase and save data into readArticle arrary<br>
+  read : function(){ <br>
+    articleCollection.on('value', function(results){ <br>
+      results.forEach(function(item){   <br>
+            var thisObj = {};<br>
+            thisObj.title = item.val().title;<br>
+            thisObj.image = item.val().image;<br>
+            thisObj.url = item.val().url;<br>
+            thisObj.body = item.val().body;<br>
+            thisObj.key = item.key(); <br>
+            thisObj.date = item.val().date;<br>
+            thisObj.author = item.val().author;<br>
+            tsGlobal.readArticle.push(thisObj); <br>
+      });  <br>
+     tsFunction.renderMain();<br>
+    }); <br>
+  },<br>
+  //Get input data and update firebase data<br>
+  update : function(key, obj){<br>
+      var updateRef = articleCollection.child(key);   <br>
+      updateRef.update(obj);<br>
+  },<br>
+  //Delete firebase article<br>
+  delete : function(id){<br>
+      var articleRef = new Firebase('https://toshiapp.firebaseio.com/articles/' + id); <br>
+      articleRef.remove();<br>
+  }<br>
+};        
+  <br><br>
+$(document).ready(function(){<br>
+    tsFunction.init();<br>
+});<br>
+</p>
+
+
+
+ 
+
+
+
+

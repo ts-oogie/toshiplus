@@ -1,0 +1,165 @@
+<p class="folioText">  
+//<br>
+//  main.cpp<br>
+//  midterm<br>
+//<br>
+//  Created by Gregory Sugano on 9/22/21.<br>
+//<br>
+#include <iostream><br>
+#include <string> <br>
+#include <cmath><br>
+#include <fstream><br>
+<br>
+using namespace std;<br><br>
+
+//Function prototypes<br>
+void userInput(string&, float&, float&, bool&);<br>
+void calculate(double, float, float, double&, double&);<br>
+void printandsave(string, double, double, double, float, float, ofstream&);<br><br>
+
+int main( ) {<br><br>
+    
+    double cost, discount, total;<br>
+    float days, rooms;<br>
+    string name;<br>
+    bool continueInput;<br><br>
+    
+    cost = 100.00;<br>
+    total = 0.00;<br>
+    discount = 0.00;<br>
+    days = 0;<br>
+    rooms = 0;<br>
+    continueInput = true;<br><br>
+     
+    ofstream outputFile("temp.txt");<br><br>
+    
+    while(continueInput){<br>
+        userInput(name, rooms, days, continueInput);<br>
+        calculate(cost, days, rooms, discount, total);<br>
+        printandsave(name, total, discount, cost, rooms, days, outputFile);<br><br>
+        
+    }<br><br>
+    
+    outputFile.close();<br><br>
+    
+    return 0;<br><br>
+    
+}<br><br>
+
+void userInput(string &name, float &rooms, float &days, bool &continueInput){<br><br>
+    
+    string toggle;<br><br>
+    
+    toggle = "y";<br><br>
+    
+    /*NAME*/<br>
+    cout << "Enter name" << endl;<br>
+    getline(cin, name);<br><br>
+    
+    /*ROOMS*/<br>
+    cout << "Please enter number of rooms :" << endl;<br>
+    cin >> rooms;<br><br>
+    
+        //if cin is in fail state OR rooms is not a integer<br>
+        while(1){<br>
+            if(cin.fail() || ((int)rooms != rooms)){<br>
+                cin.clear();<br>
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');<br>
+                cout << "Please enter a whole number :" << endl;<br>
+                cin >> rooms;<br>
+            }<br>
+            else {<br>
+                break;<br>
+            }<br>
+        }<br><br>
+    
+    /*DAYS*/<br>
+    cout << "How many days would you like to reserve room(s) : " << endl;<br>
+    cin >> days;<br><br>
+    
+        //if cin is in fail state OR days is not a integer<br>
+        while(1){<br>
+            if(cin.fail() || ((int)days != days)){<br>
+                cin.clear();<br>
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');<br>
+                cout << "Please enter a whole number :" << endl;<br>
+                cin >> days;<br>
+            }<br>
+            else {<br>
+                break;<br>
+            }<br>
+        }<br><br>
+     
+    /*CONTINUE?*/<br>
+    cout << "Continue? Enter 'y' or 'no' : " << endl;<br>
+    cin >> toggle;<br><br>
+    
+        if(toggle == "y"){<br>
+            continueInput = true;<br>
+            cin.clear();<br>
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');<br>
+        }<br>
+        if(toggle == "n"){<br>
+            continueInput = false;<br>
+        }<br><br>
+        
+}<br><br>
+
+void calculate(double cost, float days, float rooms, double &discount, double &total){<br><br>
+    
+    double roomDiscount, dayDiscount;<br><br>
+    
+    roomDiscount = 0.00;<br>
+    dayDiscount = 0.00;<br><br>
+    
+    if(rooms >= 10 && rooms < 20){<br>
+        roomDiscount = .10;<br>
+    }<br>
+    else if(rooms >= 20 && rooms < 30){<br>
+        roomDiscount = .20;<br>
+    }<br>
+    else if(rooms >= 30 && rooms < 40){<br>
+        roomDiscount = .30;<br>
+    }<br>
+    else if(days >= 3){<br>
+        dayDiscount = .05;<br>
+    }<br><br>
+    
+    discount = roomDiscount + dayDiscount;<br>
+    total = (cost - (cost*discount))*rooms*days;<br><br>
+
+}<br><br>
+
+void printandsave(string name, double total, double discount, double cost, float rooms, float days, ofstream& outputFile){<br><br>
+    
+    cout << "" << endl;<br>
+    cout << "" << endl;<br>
+    cout << "" << endl;<br>
+    cout << "" << endl;<br>
+    cout << name << endl;<br>
+    cout << "________________________" << endl;<br>
+    cout << "Cost per room :     " << cost << endl;<br>
+    cout << "Discount per room : " << discount*100 << "%" << endl;<br>
+    cout << "Number of rooms :   " << rooms << endl;<br>
+    cout << "Number of days :    " << days << endl;<br>
+    cout << "Subtotal :          " << total << endl;<br>
+    cout << "Tax :               " << total*.06 << endl;<br>
+    cout << "________________________" << endl;<br>
+    cout << "Grand Total :       " << total + (total*.06)  << endl;<br>
+    cout << "" << endl;<br>
+    cout << "" << endl;<br>
+    cout << "" << endl;<br>
+    cout << "" << endl;<br><br>
+    
+    outputFile << name << " ";<br>
+    outputFile << cost << " ";<br>
+    outputFile << discount << " ";<br>
+    outputFile << rooms << " ";<br>
+    outputFile << days << " ";<br>
+    outputFile << total << " ";<br>
+    outputFile << total*.06 << " ";<br>
+    outputFile << total + (total*.06) << endl;<br>
+     <br>
+}<br><br>
+</p>
+ 

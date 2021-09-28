@@ -1,0 +1,93 @@
+<p class="folioText">
+
+var apis = "https://en.wikipedia.org/w/api.php?action=query&generator=allpages&gapfrom=";<br>
+var userInput; <br>
+var format = "&&format=json&callback=?";<br><br>
+
+var wiki;<br><br>
+
+function scrollUp() {  <br>
+  $('#inputField').animate({'padding-top': '75'}, 400);<br>
+  $('#more-button, #results').css({'display' : 'block'});<br>
+} <br><br>
+
+function getWiki(url){ $.ajax({<br>
+        type: 'GET',<br>
+        url: url, <br>
+        contentType: "application/json; charset=utf-8",<br>
+        async: false,<br>
+        dataType: "json",<br>
+        success: function(response){  <br>
+            var responseObj = response.query.pages;   <br>
+            var genKeys = Object.keys(response.query.pages);  <br>
+            $.each(genKeys, function(i, v){ <br>
+              userInput = response.continue.gapcontinue;<br>
+              var title;  <br>
+              var titleOriginal;<br>
+              var titleSplit;  <br>
+              var wikiURL = "https://en.wikipedia.org/wiki/";<br>
+              var callback = "&callback=?"; <br>
+              var extractJoin;<br>
+              var extractArr = [];<br>
+              var extractsUrl = "https://en.wikipedia.org/w/<br>api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=";<br>
+              title = responseObj[v].title; <br>
+              titleOriginal = title;<br>
+              titleSplit = title.split(''); <br>
+              for (i=0; i<titleSplit.length; i++){<br>
+                if (titleSplit[i] === ' ') {<br>
+                  titleSplit[i] = '_';<br>
+                }<br>
+                if (titleSplit[i] === "'"){<br>
+                  titleSplit[i] = '%27';<br>
+                }<br>
+              }<br>
+              title = titleSplit.join(''); <br>
+              extractsUrl = extractsUrl + title + callback;  <br>
+              $.ajax({<br>
+                type: 'GET',<br>
+                url: extractsUrl, <br>
+                contentType: "application/json; charset=utf-8",<br>
+                async: false,<br>
+                dataType: "json",<br>
+                success: function(res){   <br>
+                  var extractSplit = res.query.pages[v].extract.split(' ');  <br><br>
+                  
+                  if(res.query.pages[v].extract.length > 1 && res.query.pages[v].extract.slice(0, 18) != "This is a redirect" ) <br>{ 
+                    for(k=0; k<22; k++){<br>
+                      extractArr.push(extractSplit[k]);<br>
+                    } <br>
+                    extractJoin = extractArr.join(' '); <br>
+                  } <br><br>
+                  
+                  else {<br>
+                    extractJoin = "";<br>
+                  } <br><br>
+                  
+                  
+                error: function(xhr){<br><br>
+         
+                }<br>
+              });<br>
+            }); <br>
+        },<br>
+        error: function(xhr){<br><br>
+         
+        }<br>
+  }); <br>
+}<br><br>
+ 
+
+$('#submit').click(function(){<br>
+  $("#results").empty();<br>
+  userInput = $('#contact-text-message').val(); <br>
+  wiki = apis + userInput + format;<br>
+  scrollUp();<br>
+  getWiki(wiki);<br>
+});<br><br>
+
+$('#more-button').click(function(e){<br>
+  e.preventDefault();<br>
+  wiki = apis + userInput + format;<br>
+  getWiki(wiki);<br>
+});<br>
+</p>
